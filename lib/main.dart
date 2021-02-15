@@ -28,14 +28,16 @@ class _MyAppState extends State<MyApp> {
       'answers': [
         {'text': 'Lion', 'score': 4},
         {'text': 'Cat', 'score': 6},
-        {'text': 'Dog', 'score': 9}],
+        {'text': 'Dog', 'score': 9}
+      ],
     },
     {
       'questionText': 'Which course are you studying?',
       'answers': [
         {'text': 'BBA', 'score': 6},
         {'text': 'BSC', 'score': 4},
-        {'text': 'BTech', 'score': 8}],
+        {'text': 'BTech', 'score': 8}
+      ],
     },
   ];
 
@@ -45,6 +47,13 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       // it force flutter to rebuild ui (not the entire) but written in it
       _qIndex++;
+    });
+  }
+
+  void _resetQuiz() {
+    setState(() {
+      _qIndex = 0;
+      _totalScore = 0;
     });
   }
 
@@ -63,7 +72,7 @@ class _MyAppState extends State<MyApp> {
                 questions: _questions,
                 qIndex: _qIndex,
                 answerQuestion: _answerQuestion)
-            : Result(_totalScore),
+            : Result(_totalScore, _resetQuiz),
       ),
     );
   }
